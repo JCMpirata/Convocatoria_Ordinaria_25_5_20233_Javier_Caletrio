@@ -80,7 +80,8 @@ def descomprimir(mensaje):
 
 if __name__ == '__main__':
 
-    mensaje = 'HOLA, SOY TOMAS'
+    mensaje = 'TOAHEHSAEHTO'
+
     mensaje_comprimido = comprimir(mensaje)
     mensaje_descomprimido = descomprimir(mensaje_comprimido)
 
