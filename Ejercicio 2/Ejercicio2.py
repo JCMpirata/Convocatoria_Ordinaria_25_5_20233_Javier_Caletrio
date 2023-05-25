@@ -1,38 +1,33 @@
-import random
-import string
-
 class Pokemon:
     def __init__(self, nombre, tipo):
         self.nombre = nombre
         self.tipo = tipo
-        print("Se ha creado el Pokémon", self.nombre, "con éxito.")
-        self.clasificacion()
+        print(f"El Pokemon {self.nombre} se ha creado con éxito.")
 
     def clasificacion(self):
-        temp = self.nombre.split()
-        self.codigo = temp[0]
-        temp = temp[1]
-        self.ataque = temp[0]
-        self.defensa= temp[1]
-        self.ataqueespecial = temp[2]
-        self.defensaespecial = temp[3]
+        clasificacion_tipo = {
+            "Agua": "PS",
+            "Fuego": "Ataque",
+            "Planta": "Defensa",
+            "Eléctrico": "Ataque Especial",
+            "Hielo": "Defensa Especial",
+            "Volador": "Velocidad"
+        }
+        if self.tipo in clasificacion_tipo:
+            return clasificacion_tipo[self.tipo]
+        else:
+            return "Desconocido"
 
-    def __str__(self):
-        return "Tipo: " + self.tipo + ", Clasificación: PS, Ataque, Defensa, Ataque Especial, Defensa Especial, Velocidad"
+# Crear una lista con Pokemon
+pokemones = [
+    Pokemon("Squirtle", "Agua"),
+    Pokemon("Charizard", "Fuego"),
+    Pokemon("Bulbasaur", "Planta"),
+    Pokemon("Pikachu", "Eléctrico"),
+    Pokemon("Articuno", "Hielo"),
+    Pokemon("Pidgeot", "Volador")
+]
 
-
-def crear_pokemon(n):
-    lista_pokemon = []
-    for _ in range(n):
-        nombre = ''.join(random.choices(string.ascii_uppercase, k=2))
-        tipo = random.choice(["Fuego", "Agua", "Planta", "Eléctrico"])
-        pokemon = Pokemon(nombre, tipo)
-        lista_pokemon.append(pokemon)
-    return lista_pokemon
-
-if __name__ == '__main__':
-    n = int(input('Ingrese la cantidad de Pokémon que desea crear: '))
-    lista_pokemon = crear_pokemon(n)
-
-    for pokemon in lista_pokemon:
-        print(pokemon.clasificacion())
+# Clasificar los Pokemon
+for pokemon in pokemones:
+    print(f"{pokemon.nombre}: {pokemon.clasificacion()}")
