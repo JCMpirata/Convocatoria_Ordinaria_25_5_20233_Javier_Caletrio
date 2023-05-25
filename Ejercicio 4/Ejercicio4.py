@@ -1,4 +1,5 @@
 from datetime import datetime
+import unittest
 
 class Pokeball:
     def __init__(self, peso, nombre, precio, fecha_caducidad):
@@ -17,6 +18,16 @@ pokeball2 = Pokeball(1, "Masterball", 1000, "26-11-2003")
 pokeball3 = Pokeball(2, "Ultraball", 500, "13-12-2020")
 pokeball4 = Pokeball(3, "Safari Ball", 200, "30-03-2004")
 pokeball5 = Pokeball(4, "Nest Ball", 300, "21-09-2005")
+
+# Pruebas de la clase Pokeball
+class TestPokeball(unittest.TestCase):
+        def test_pokeball(self):
+            pokeball = Pokeball(0.5, "Pokeball", 100, "03-03-2021")
+            self.assertEqual(pokeball.peso, 0.5)
+            self.assertEqual(pokeball.nombre, "Pokeball")
+            self.assertEqual(pokeball.precio, 100)
+            self.assertEqual(pokeball.fecha_caducidad, datetime.strptime("03-03-2021", "%d-%m-%Y"))
+            self.assertEqual(pokeball.__str__(), "Nombre: Pokeball, Peso: 0.5kg, Precio: $100, Fecha de Caducidad: 03-03-2021")
 
 if __name__ == '__main__':
 
@@ -37,3 +48,8 @@ if __name__ == '__main__':
     pokeb.sort(key=lambda x: x.fecha_caducidad)
     for poke in pokeb:
         print(poke)
+
+    unittest.main()
+
+    
+
