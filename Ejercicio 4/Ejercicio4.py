@@ -20,12 +20,19 @@ pokeball5 = Pokeball(4, "Nest Ball", 300, "21-09-2005")
 
 if __name__ == '__main__':
 
-    # Modificar el precio de los artefactos
+    # Modificar el precio de las pokeballs
     pokeball1.precio = 200
     pokeball2.precio = 2000
     pokeball3.precio = 1000
 
-    # Mostrar los artefactos por su fecha de caducidad
+    # Mostrar las pokeballs por su precio
+    pokeb = [pokeball1, pokeball2, pokeball3, pokeball4, pokeball5]
+    pokeb.sort(key=lambda x: x.precio)
+    for poke in pokeb:
+        print(poke)
+
+
+    # Mostrar las pokeballs por su fecha de caducidad
     pokeb = [pokeball1, pokeball2, pokeball3, pokeball4, pokeball5]
     pokeb.sort(key=lambda x: x.fecha_caducidad)
     for poke in pokeb:
