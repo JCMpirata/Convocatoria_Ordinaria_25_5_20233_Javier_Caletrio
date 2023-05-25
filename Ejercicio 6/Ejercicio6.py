@@ -2,34 +2,24 @@ class Board:
     def __init__(self, n):
         self.n = n
         self.boards = []
-        self.possible_board = []
-        self.diagonal = []
-        self.antidiagonal = []
+        self.nodes = [Node(i) for i in range(n)]
 
     def depth_first_search(self):
-        self._dfs_helper()
+        for node in self.nodes:
+            self._dfs_helper(node, [node])
+
         self.print_boards()
         print(f"{len(self.boards)} soluciones encontradas para un tablero de {self.n}x{self.n}")
 
-    def _dfs_helper(self, row=0):
-        if row == self.n:
-            board = ["." * i + "Q" + "." * (self.n - i - 1) for i in self.possible_board]
+    def _dfs_helper(self, node, path):
+        if len(path) == self.n:
+            board = ["." * i + "Q" + "." * (self.n - i - 1) for i in path]
             self.boards.append(board)
             return
 
-        for col in range(self.n):
-            if col in self.possible_board or row - col in self.diagonal or row + col in self.antidiagonal:
-                continue
-
-            self.possible_board.append(col)
-            self.diagonal.append(row - col)
-            self.antidiagonal.append(row + col)
-
-            self._dfs_helper(row + 1)
-
-            self.possible_board.pop()
-            self.diagonal.pop()
-            self.antidiagonal.pop()
+        for neighbor in node.get_neighbors():
+            if neighbor not in path and all(abs(neighbor - i) != len(path) for i, node in enumerate(path)):
+                self._dfs_helper(neighbor, path + [neighbor])
 
     def print_boards(self):
         for board in self.boards:
@@ -37,9 +27,7 @@ class Board:
                 print(column)
             print("")
 
-if __name__ == "__main__":
-    n = int(input("Ingrese el número de pokeballs: "))
 
-    board = Board(n)
-    board.depth_first_search()
+
+
 
