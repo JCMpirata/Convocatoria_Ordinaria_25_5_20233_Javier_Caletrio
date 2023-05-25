@@ -1,0 +1,2 @@
+# Convocatoria_Ordinaria_25_5_20233_Javier_Caletrio
+https://github.com/JCMpirata/Convocatoria_Ordinaria_25_5_20233_Javier_Caletrio.git
