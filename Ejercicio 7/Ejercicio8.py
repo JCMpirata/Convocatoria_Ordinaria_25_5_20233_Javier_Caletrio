@@ -57,7 +57,14 @@ codigos = generar_codigos(arbol)
 codigos = {line.split(' : ')[0]: line.split(' : ')[1][:-1] for line in codigos.split('\n') if line}
 
 def comprimir(mensaje):
-    return ''.join(codigos[i] for i in mensaje)
+    comprimido = ''
+    for i in mensaje:
+        if i in codigos:
+            comprimido += codigos[i]
+        else:
+            print(f"Error: El carácter '{i}' no se encuentra en el diccionario de códigos.")
+    return comprimido
+
 
 def descomprimir(mensaje):
     clave = ''
@@ -70,3 +77,13 @@ def descomprimir(mensaje):
                 clave = ''
                 break
     return res
+
+if __name__ == '__main__':
+
+    mensaje = 'HOLA, SOY TOMAS'
+    mensaje_comprimido = comprimir(mensaje)
+    mensaje_descomprimido = descomprimir(mensaje_comprimido)
+
+    print('Mensaje original:', mensaje)
+    print('Mensaje comprimido:', mensaje_comprimido)
+    print('Mensaje descomprimido:', mensaje_descomprimido)
